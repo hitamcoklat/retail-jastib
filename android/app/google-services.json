@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "760582243005",
+    "firebase_url": "https://my-app-2aa0a.firebaseio.com",
+    "project_id": "my-app-2aa0a",
+    "storage_bucket": "my-app-2aa0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760582243005:android:4d1c733f35481aa7acedd4",
+        "android_client_info": {
+          "package_name": "com.hitamcoklat.mobilepos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760582243005-204a3sij2oujbb4bk8hmsd7mp25bhf5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIy1Vm-GPiEnHGM051c_wUZs9EHpKoxPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760582243005-lse2107cpcgs0s6krlub23govfkb41br.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760582243005:android:71ec8adccc0acb9eacedd4",
+        "android_client_info": {
+          "package_name": "com.hitamcoklat.retailjastib"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "760582243005-204a3sij2oujbb4bk8hmsd7mp25bhf5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIy1Vm-GPiEnHGM051c_wUZs9EHpKoxPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "760582243005-lse2107cpcgs0s6krlub23govfkb41br.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
