@@ -9,13 +9,16 @@ import motorIcon from '../../../assets/motor-icon_result.png'
 export default function SetLocation() {
 
     const navigation = useNavigation();
-    const dispatch = useDispatch()
     const [currentPosition, setCurrentPosition] = useState(null)
     const [location, setlocation] = useState(null)
     const globalState = useSelector(state => state)
     const user = globalState.user.dataUser;    
 
     useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            // cek apakah sudah login atau belum disini
+            getLokasi()
+        })
         return () => {
 
         }
@@ -26,12 +29,11 @@ export default function SetLocation() {
     };
 
     const pilihLokasi = () => {
-        console.log(user)
         firestore()
             .collection('driverLocation')
             .doc(user.EMAIL)
             .set({
-                latlng: new firestore.GeoPoint(-6.9725477, 107.5568143),
+                latlng: new firestore.GeoPoint(currentPosition.latitude, currentPosition.longitude),
             }).then(() => {
                 showToast('Lokasi berhasil di update!')
                 console.log('User updated!');
@@ -39,6 +41,15 @@ export default function SetLocation() {
     }
 
     async function getLokasi() {
+
+        if (__DEV__) {
+            return await setCurrentPosition({
+                latitude: -7.0076377,
+                longitude: 107.5568143,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            })
+        }
 
         const granted = await PermissionsAndroid.check(
             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -53,10 +64,8 @@ export default function SetLocation() {
                         detail: ""
                     }
                     setCurrentPosition({
-                        // latitude: position.coords.latitude,
-                        // longitude: position.coords.longitude,
-                        latitude: -7.0076377,
-                        longitude: 107.5568143,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     })
@@ -94,16 +103,16 @@ export default function SetLocation() {
             <MapView
                 style={styles.map}
                 initialRegion={{
-                    latitude: -6.9725477,
-                    longitude: 107.5925393,
+                    latitude: currentPosition.latitude,
+                    longitude: currentPosition.longitude,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 }}>
                 <Marker
                     image={motorIcon}
                     coordinate={{
-                        latitude: -6.9725477,
-                        longitude: 107.5925393
+                        latitude: currentPosition.latitude,
+                        longitude: currentPosition.longitude,
                     }}
                     title="Lokasi Anda"
                 />

@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity, ActivityIndicator, View, Text, StyleSheet, ScrollView, FlatList, Dimensions } from 'react-native';
-import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { useFetch } from "../../hooks";
-import { formatMoney } from "../../lib/currency"
+import { useIsFocused } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 export default function ListDriver() {
 
-    const dispatch = useDispatch()
     const globalState = useSelector(state => state)
     const user = globalState.user.dataUser;
-    const navigation = useNavigation();
     const [pageNumber, setpageNumber] = useState(1)
     const [loadingPesanan, setLoadingPesanan] = useState(true)
     const [dataPesanan, setDataPesanan] = useState([])
     const [allLoaded, setAllLoaded] = useState(false)
     const [totalDriver, setTotalDriver] = useState(0)
-    const rDataPesanan = globalState.user.dataPesanan;
     const isFocused = useIsFocused()
 
     useEffect(() => {

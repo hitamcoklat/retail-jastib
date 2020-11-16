@@ -77,8 +77,6 @@ export default function CKirimBarang() {
         dispatch(setAddAlamat(dataLokasi))
         navigation.navigate('CheckoutInfo');
     }
-    console.log('dari pili lokasi')
-    console.log(location)
 
     return (
         <View style={{flexDirection: 'column', height: '100%'}}>

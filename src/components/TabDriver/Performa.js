@@ -33,6 +33,9 @@ export default function Performa() {
                 if (res.data.length > 0) {
                     setDataPesanan(res.data)
                     setTotalPesanan(res.total)
+                    if(res.total <= 10) {
+                        setAllLoaded(true)
+                    }
                 } else {
                     setAllLoaded(true)
                 }                 

@@ -12,6 +12,7 @@ export default function CGoogleMapDriver({ route }) {
 
     const navigation = useNavigation();
     const [currentPosition, setCurrentPosition] = useState(null)
+    const [mapExist, setMapExist] = useState(false)
     const [location, setlocation] = useState(null)
     const [jarak, setJarak] = useState("")
     const [origin, setOrigin] = useState({
@@ -25,15 +26,7 @@ export default function CGoogleMapDriver({ route }) {
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             // cek apakah sudah login atau belum disini
-            // getLokasi()
-            setCurrentPosition({
-                // latitude: position.coords.latitude,
-                // longitude: position.coords.longitude,
-                latitude: -7.0076377,
-                longitude: 107.5568143,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-            })            
+            getLokasi()         
         })
         return () => {
 
@@ -41,6 +34,15 @@ export default function CGoogleMapDriver({ route }) {
     }, [navigation])
 
     async function getLokasi() {
+
+        // if (__DEV__) {
+        //     return await setCurrentPosition({
+        //         latitude: -7.0076377,
+        //         longitude: 107.5568143,
+        //         latitudeDelta: 0.0922,
+        //         longitudeDelta: 0.0421,
+        //     })
+        // }        
 
         const granted = await PermissionsAndroid.check(
             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -56,16 +58,18 @@ export default function CGoogleMapDriver({ route }) {
                         long: position.coords.longitude,
                         detail: ""
                     }
-                    console.log(dataLokasi)
                     setCurrentPosition({
-                        // latitude: position.coords.latitude,
-                        // longitude: position.coords.longitude,
-                        latitude: -7.0076377,
-                        longitude: 107.5568143,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     })
                     setlocation(dataLokasi)
+                    setOrigin({ 
+                        latitude: position.coords.latitude, 
+                        longitude: position.coords.longitude
+                    })
+                    setMapExist(true)
                 },
                 error => {
                     // See error code charts below.
@@ -81,10 +85,6 @@ export default function CGoogleMapDriver({ route }) {
         }
     }
 
-    const getCordinate = (val) => {
-        console.log(val)
-    }
-
     return (
         <View style={styles.container}>
             <View style={{ backgroundColor: 'white', paddingVertical: 10, flexDirection: 'row' }}>
@@ -95,44 +95,47 @@ export default function CGoogleMapDriver({ route }) {
                     <Text style={{ fontSize: 22, marginLeft: 10 }}>Lokasi</Text>
                 </View>
             </View>
-            <MapView 
-                style={styles.map}
-                initialRegion={{
-                    latitude: -6.9297957,
-                    longitude: 107.5925393,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-            }}>
-                {/* Lokasi Driver */}
-                <Marker
-                    image={motorIcon}
-                    coordinate={{
-                        latitude: -6.9297957,
-                        longitude: 107.5925393
-                    }}
-                    title="Lokasi Anda"
-                />            
-                {/* Lokasi Tujuan */}
-                <Marker
-                    coordinate={{
-                        latitude: item.lat,
-                        longitude: item.long
-                    }}
-                    title="Lokasi Tujuan"
-                />            
-                <MapViewDirections
-                    strokeWidth={5}
-                    strokeColor="red"
-                    optimizeWaypoints={true}
-                    origin={origin}
-                    destination={destination}
-                    apikey={GOOGLE_MAPS_APIKEY}
-                    onReady={result => {
-                        setJarak(result.distance)
-                    }}
-                    mode="WALKING"
-                />
-            </MapView>            
+            {
+                (mapExist) &&
+                    <MapView
+                        style={styles.map}
+                        initialRegion={{
+                            latitude: currentPosition.latitude,
+                            longitude: currentPosition.longitude,
+                            latitudeDelta: 0.0922,
+                            longitudeDelta: 0.0421,
+                        }}>
+                        {/* Lokasi Driver */}
+                        <Marker
+                            image={motorIcon}
+                            coordinate={{
+                                latitude: currentPosition.latitude,
+                                longitude: currentPosition.longitude,
+                            }}
+                            title="Lokasi Anda"
+                        />
+                        {/* Lokasi Tujuan */}
+                        <Marker
+                            coordinate={{
+                                latitude: item.lat,
+                                longitude: item.long
+                            }}
+                            title="Lokasi Tujuan"
+                        />
+                        <MapViewDirections
+                            strokeWidth={5}
+                            strokeColor="red"
+                            optimizeWaypoints={true}
+                            origin={origin}
+                            destination={destination}
+                            apikey={GOOGLE_MAPS_APIKEY}
+                            onReady={result => {
+                                setJarak(result.distance)
+                            }}
+                            mode="WALKING"
+                        />
+                    </MapView>
+            }                        
             <View style={{ backgroundColor: 'white', paddingVertical: 10 }}>
                 <Text style={{margin: 10, fontSize: 18}}>
                     Jarak kurang lebih : {Math.ceil(jarak)} km 

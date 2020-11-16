@@ -13,6 +13,7 @@ import CDetailPesanan from '../components/CDetailPesanan';
 import PilihLokasi from '../components/PilihLokasi';
 import CheckoutInfo from '../components/CheckoutInfo';
 import CKirimBarang from '../components/CKirimBarang';
+import CTitipBarang from '../components/CTitipBarang';
 import CCampaignPage from '../components/CCampaignPage';
 import CLupaPassword from '../components/CLupaPassword';
 import CGantiPassword from '../components/CGantiPassword';
@@ -99,6 +100,7 @@ function UserStack() {
             <Stack.Screen name="CDetailPesanan" component={CDetailPesanan} />
             <Stack.Screen name="CheckoutInfo" component={CheckoutInfo} />
             <Stack.Screen name="CKirimBarang" component={CKirimBarang} />
+            <Stack.Screen name="CTitipBarang" component={CTitipBarang} />
             <Stack.Screen name="CCampaignPage" component={CCampaignPage} />
             <Stack.Screen name="CLupaPassword" component={CLupaPassword} />
             <Stack.Screen name="CGantiPassword" component={CGantiPassword} />   
