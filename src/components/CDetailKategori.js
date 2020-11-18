@@ -16,13 +16,10 @@ const CDetailKategori = ({ route, navigation }) => {
   const cart = globalState.cart.cartItem;
   const [idKategori, setIdKategori] = useState(route.params.idKategori);
   const [idLokasi, setIdLokasi] = useState("1");
-  console.log('halaman detail kategori')
-  console.log(idKategori)
 
   const [dataCategory, loadingCategory] = useFetch(API_URL + '/api/getAllKategori?q=list')
   const [dataProduk, loadingProduk] = useFetch(API_URL + '/api/getProdukByIdKategori/' + idKategori + "/?location=" + idLokasi)
   const [dataLokasi, loadingLokasi] = useFetch(API_URL + '/api/getAllLokasi/')
-  console.log(dataProduk)
 
   const addCart = (item, id) => {
     dispatch(addToCart(item, id))

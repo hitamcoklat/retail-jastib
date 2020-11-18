@@ -3,7 +3,7 @@ import { TouchableOpacity, Image, View, Text, Clipboard, ScrollView, ToastAndroi
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import Lightbox from 'react-native-lightbox';
-import { formatMoney } from '../lib/currency'
+import { formatMoney } from '../../lib/currency'
 
 export default function CDetailPesanan({ route }) {
 
@@ -85,7 +85,7 @@ export default function CDetailPesanan({ route }) {
                     <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Alamat Pengiriman</Text>
                     <Text style={{ fontSize: 16 }}>Detail: {item.ALAMAT.detail}</Text>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('CGoogleMapDriver', { item: item.ALAMAT })}
+                        onPress={() => navigation.navigate('DetailMapPesanan', { item: item.ALAMAT })}
                         style={{ backgroundColor: '#4b96f3', paddingVertical: 5, marginTop: 10 }}>
                         <Text style={{ fontSize: 16, textAlign: 'center', color: 'white' }}>Buka di Map</Text>
                     </TouchableOpacity>

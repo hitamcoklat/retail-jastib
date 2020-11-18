@@ -1,7 +1,7 @@
 // global.API_URL = 'http://192.168.0.110:8080/jastib';
 // global.API_URL = 'http://192.168.1.9:8080/jastib';
 // global.API_URL = 'http://maubikin.web.id/jastib';
-global.API_URL = 'http://13e4f2205977.ngrok.io/jastib';
+global.API_URL = 'http://e7b41c0d30d4.ngrok.io/jastib';
 global.LINK_SUPPORT_PAGE = 'http://192.168.1.10:8081';
 // global.API_ASSET = 'http://hitamcoklat.com/mobile-rekber';
 global.API_ASSET = 'https://kucing777.github.io/jastib';

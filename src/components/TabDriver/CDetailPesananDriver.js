@@ -9,6 +9,7 @@ export default function CDetailPesananDriver({ route }) {
     const dispatch = useDispatch()
     const navigation = useNavigation(); 
     const item = route.params.item;
+    console.log("Detail pesanan driver")
     console.log(item)
 
     const showToast = (msg) => {

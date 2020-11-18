@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { TouchableOpacity, Image, View, Text, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { setFooter } from "../redux/actions";
 import { WebView } from 'react-native-webview';
 import '../../global.js';
 
 export default function CheckoutInfo() {
     
+    const dispatch = useDispatch()
     const navigation = useNavigation();
     
     return (
@@ -27,7 +29,10 @@ export default function CheckoutInfo() {
             <WebView style={{marginHorizontal: 20, marginTop: 20}} source={{ uri: API_URL + '/page/listBank' }} />
             <View style={{ backgroundColor: 'white', paddingVertical: 20, paddingHorizontal: 20 }}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('UploadPembayaran')}
+                    onPress={() => {
+                        dispatch(setFooter('two'))
+                        navigation.navigate('Home')
+                    }}
                     style={{ backgroundColor: 'orange', paddingVertical: 10, borderRadius: 5 }}>
                     <Text style={{ textAlign: 'center', fontWeight: 'bold', color: 'white', fontSize: 18 }}>Konfirmasi Pembayaran</Text>
                 </TouchableOpacity>

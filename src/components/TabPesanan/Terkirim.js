@@ -136,7 +136,7 @@ export default function Terkirim() {
         <>
             <View style={{ backgroundColor: 'white' }}>
                 <View style={{ paddingVertical: 10, backgroundColor: '#FFF' }}>
-                    <Text style={{ textAlign: 'center', fontSize: 18, color: 'black' }}>Pesanan Terkirim</Text>
+                    <Text style={{ textAlign: 'center', fontSize: 18, color: 'black' }}>Pesanan Disetujui</Text>
                 </View>
             </View>
             {

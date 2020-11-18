@@ -24,14 +24,14 @@ export default function PilihLokasi() {
     const dataAlamat = globalState.alamat.dataAlamat;
 
     useEffect(() => {
-        // if(Object.keys(dataAlamat).length === 0) {
-        //     console.log('tidak ada data')
-        //     getLokasi();
-        // } else {
-        //     console.log('ada data')
-            // setlocation(dataAlamat)
-        // }
-        getLokasi()
+        if (__DEV__) {
+            setlocation({
+                lat: -7.0076377,
+                long: 107.5568143
+            })
+        } else {
+            getLokasi()
+        }
     }, [])
 
     async function getLokasi() {
@@ -39,8 +39,6 @@ export default function PilihLokasi() {
         const granted = await PermissionsAndroid.check(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
         );
-
-        console.log(granted)
 
         if (granted) {
           await Geolocation.getCurrentPosition(

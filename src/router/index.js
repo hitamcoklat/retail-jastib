@@ -9,7 +9,7 @@ import CDetailProduk from '../components/CDetailProduk';
 import CRegisterSuccess from '../components/CRegisterSuccess';
 import Cart from '../components/Cart';
 import PDalamProses from '../components/PDalamProses';
-import CDetailPesanan from '../components/CDetailPesanan';
+import CDetailPesanan from '../components/TabPesanan/CDetailPesanan';
 import PilihLokasi from '../components/PilihLokasi';
 import CheckoutInfo from '../components/CheckoutInfo';
 import CKirimBarang from '../components/CKirimBarang';
@@ -17,6 +17,7 @@ import CTitipBarang from '../components/CTitipBarang';
 import CCampaignPage from '../components/CCampaignPage';
 import CLupaPassword from '../components/CLupaPassword';
 import CGantiPassword from '../components/CGantiPassword';
+import PilihLokasiKirim from '../components/PilihLokasiKirim';
 import CDriver from '../components/CDriver'
 import COwner from '../components/COwner'
 import Pesanan from '../components/Pesanan';
@@ -27,6 +28,7 @@ import CSetting from '../components/TabOwner/CSetting';
 import CDetailPesananDriver from '../components/TabDriver/CDetailPesananDriver';
 import CDetailPesananOwner from '../components/TabOwner/CDetailPesananOwner';
 import UploadPembayaran from '../components/TabPesanan/UploadPembayaran';
+import DetailMapPesanan from '../components/TabPesanan/DetailMapPesanan';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Stack = createStackNavigator();
@@ -71,6 +73,7 @@ function OwnerStack() {
             <Stack.Screen options={{ gestureEnabled: false }} name="COwner" component={COwner} />        
             <Stack.Screen name="CDetailPesananOwner" component={CDetailPesananOwner} />
             <Stack.Screen name="CGantiPassword" component={CGantiPassword} />   
+            <Stack.Screen name="DetailMapPesanan" component={DetailMapPesanan} />   
             <Stack.Screen name="CSetting" component={CSetting} />   
         </Stack.Navigator>
     )
@@ -97,6 +100,7 @@ function UserStack() {
             <Stack.Screen name="Cart" component={Cart} />
             <Stack.Screen name="Pesanan" component={Pesanan} />
             <Stack.Screen name="PilihLokasi" component={PilihLokasi} />
+            <Stack.Screen name="PilihLokasiKirim" component={PilihLokasiKirim} />
             <Stack.Screen name="CDetailPesanan" component={CDetailPesanan} />
             <Stack.Screen name="CheckoutInfo" component={CheckoutInfo} />
             <Stack.Screen name="CKirimBarang" component={CKirimBarang} />
@@ -105,6 +109,7 @@ function UserStack() {
             <Stack.Screen name="CLupaPassword" component={CLupaPassword} />
             <Stack.Screen name="CGantiPassword" component={CGantiPassword} />   
             <Stack.Screen name="UploadPembayaran" component={UploadPembayaran} />   
+            <Stack.Screen name="DetailMapPesanan" component={DetailMapPesanan} />   
         </Stack.Navigator>
     )
 }

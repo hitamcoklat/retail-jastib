@@ -29,7 +29,7 @@ export default function Pesanan() {
                     }
                 }}>
                     <Tab.Screen name="Proses" component={Proses} />
-                    <Tab.Screen name="Terkirim" component={Terkirim} />
+                    <Tab.Screen name="Disetujui" component={Terkirim} />
                     <Tab.Screen name="Batal" component={Batal} />
                 </Tab.Navigator>
             </>

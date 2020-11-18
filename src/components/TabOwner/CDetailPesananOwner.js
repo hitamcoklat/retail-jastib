@@ -45,7 +45,7 @@ export default function CDetailPesananOwner({ route }) {
         .then((res) => {
             if(res.status == true) {
                     sendToFirebase(res.data)
-                    setStatusValidasi('terkirim')
+                    setStatusValidasi('DISETUJUI')
                     showToast('Pesanan berhasil di validasi!')
                 }
             })        
@@ -97,7 +97,7 @@ export default function CDetailPesananOwner({ route }) {
                     <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Alamat Pengiriman</Text>
                     <Text style={{ fontSize: 16 }}>Detail: {item.ALAMAT.detail}</Text>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('CGoogleMapDriver', { item: item.ALAMAT })}
+                        onPress={() => navigation.navigate('DetailMapPesanan', { item: item.ALAMAT })}
                         style={{ backgroundColor: '#4b96f3', paddingVertical: 5, marginTop: 10 }}>
                         <Text style={{ fontSize: 16, textAlign: 'center', color: 'white' }}>Buka di Map</Text>
                     </TouchableOpacity>

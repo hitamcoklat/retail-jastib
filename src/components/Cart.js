@@ -40,7 +40,7 @@ export default function Cart() {
                 [
                     { text: "OK", onPress: () => navigation.navigate(navigateInfoMessage) }
                 ],
-                { cancelable: true }
+                { cancelable: false }
             );
         }
         return () => {
@@ -89,7 +89,7 @@ export default function Cart() {
             totalHarga: globalState.cart.total,
             alamat: globalState.alamat.dataAlamat,
             metodaPembayaran: globalState.alamat.metodaPembayaran,
-            ongkir: hargaDaerah.data[0].harga_daerah,
+            ongkir: dataAlamat.totalPengiriman,
             kirimBesok : kirimBesok,
             pilihanWaktu: popPilihWaktu,
             tanggalKirim: waktuPengiriman
@@ -110,7 +110,7 @@ export default function Cart() {
                     setMessageInfo("Pesanan anda berhasil ditambahkan!")
                     setNavigateInfoMessage('CheckoutInfo')                    
                     dispatch(emptyCart())
-                    navigation.navigate(navigateInfoMessage)
+                    navigation.navigate(navigateInfoMessage, { item: cart })
                 } else {
                     console.log('Terjadi kesalahan!')
                 }
@@ -185,7 +185,7 @@ export default function Cart() {
                         <Text style={{ fontSize: 16 }}>{dataAlamat.detail}</Text>
                     </TouchableOpacity> : <View><Text style={{ fontSize: 16 }}>Pilih Alamat Pengiriman</Text></View>
                 }                                  
-                <TouchableOpacity onPress={() => navigation.navigate('PilihLokasi')}>
+                <TouchableOpacity onPress={() => navigation.navigate('PilihLokasiKirim')}>
                 {Object.keys(dataAlamat).length !== 0 ?
                     <Text style={{fontSize: 16, fontWeight: "bold", color: 'green'}}>Rubah</Text> :
                     <Text style={{fontSize: 16, fontWeight: "bold", color: 'orange'}}>Pilih</Text>
@@ -219,15 +219,15 @@ export default function Cart() {
                     <Text style={{fontSize: 16, color: '#515151'}}>Rp {formatMoney(total)}</Text>
                 </View>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text style={{fontSize: 16, color: '#515151'}}>Harga Kirim Per Km.</Text>
+                    <Text style={{fontSize: 16, color: '#515151'}}>Ongkos Kirim.</Text>
                     <Text style={{fontSize: 16, color: '#515151'}}>
-                        {loadingHargaDaerah ? 'Loading...' : 'Rp ' + formatMoney(hargaDaerah.data[0].harga_daerah) }
+                            {loadingHargaDaerah ? 'Loading...' : 'Rp ' + formatMoney(dataAlamat.totalPengiriman) }
                     </Text>
                 </View>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                     <Text style={{fontSize: 16, color: 'orange'}}>Total Belanja</Text>
                     <Text style={{fontSize: 16, color: 'orange'}}>
-                        Rp {loadingHargaDaerah ? 'Loading...' : formatMoney(parseInt(total) + parseInt(hargaDaerah.data[0].harga_daerah))}
+                            Rp {loadingHargaDaerah ? 'Loading...' : formatMoney(parseInt(total) + parseInt(dataAlamat.totalPengiriman))}
                     </Text>
                 </View>
             </View>

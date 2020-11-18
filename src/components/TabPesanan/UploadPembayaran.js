@@ -17,8 +17,6 @@ export default function UploadPembayaran({ route }) {
     const user = globalState.user.dataUser
 
     useEffect(() => {
-        console.log(item)
-        console.log(user.TOKEN)
     }, [])
 
     return (
