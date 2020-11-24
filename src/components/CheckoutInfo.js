@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { TouchableOpacity, Image, View, Text, TextInput } from 'react-native';
+import { TouchableOpacity, Image, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setFooter } from "../redux/actions";
 import { WebView } from 'react-native-webview';
 import '../../global.js';
